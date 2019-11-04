@@ -1,11 +1,14 @@
 package artie.sensor.screenwebcam;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import artie.sensor.common.dto.SensorObject;
 import artie.sensor.common.services.ArtieClientSensorImpl;
 import artie.sensor.screenwebcam.enums.ConfigurationEnum;
 import artie.sensor.screenwebcam.services.ScreenService;
@@ -68,5 +71,23 @@ public class ScreenWebcamSensor extends ArtieClientSensorImpl{
 		if(this.screenServiceIsActive){
 			this.screenService.stop();
 		}
+	}
+	
+	/**
+	 * Getting the sensor data from the listeners
+	 * @return
+	 */
+	public List<SensorObject> getSensorData(){
+		
+		//Cleaning all the information stored
+		this.sensorData.clear();
+				
+		//Getting the information from the keyboard listener
+		if(this.screenServiceIsActive){
+			this.screenService.getScreenCaptures().forEach(screen->this.sensorData.add(screen));
+			this.screenService.clearScreens();
+		}
+		
+		return this.sensorData;
 	}
 }
