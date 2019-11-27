@@ -1,4 +1,4 @@
-package artie.sensor.screenwebcam.listeners;
+package artie.sensor.screen.listeners;
 
 import java.util.Date;
 import java.util.List;

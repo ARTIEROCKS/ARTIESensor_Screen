@@ -1,13 +1,13 @@
-package artie.sensor.screenwebcam;
+package artie.sensor.screen;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ScreenwebcamApplication {
+public class ScreenApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ScreenwebcamApplication.class, args);
+		SpringApplication.run(ScreenApplication.class, args);
 	}
 
 }

@@ -1,4 +1,4 @@
-package artie.sensor.screenwebcam.services;
+package artie.sensor.screen.services;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -12,16 +12,16 @@ import com.github.agomezmoron.multimedia.recorder.VideoRecorder;
 import com.github.agomezmoron.multimedia.recorder.configuration.VideoRecorderConfiguration;
 
 import artie.sensor.common.dto.SensorObject;
-import artie.sensor.screenwebcam.ScreenWebcamSensor;
-import artie.sensor.screenwebcam.enums.ConfigurationEnum;
-import artie.sensor.screenwebcam.listeners.ScreenListener;
+import artie.sensor.screen.ScreenSensor;
+import artie.sensor.screen.enums.ConfigurationEnum;
+import artie.sensor.screen.listeners.ScreenListener;
 
 
 @Service
 public class ScreenService {
 	
 	@Autowired
-	private ScreenWebcamSensor screenWebcamSensor;
+	private ScreenSensor screenWebcamSensor;
 	private List<SensorObject> screenCaptures = new ArrayList<SensorObject>();
 	
 	//Properties

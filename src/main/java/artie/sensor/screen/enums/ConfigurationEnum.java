@@ -1,4 +1,4 @@
-package artie.sensor.screenwebcam.enums;
+package artie.sensor.screen.enums;
 
 public enum ConfigurationEnum {
 	SCREEN_FPS,

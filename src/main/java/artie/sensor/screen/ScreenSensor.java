@@ -1,4 +1,4 @@
-package artie.sensor.screenwebcam;
+package artie.sensor.screen;
 
 import java.util.List;
 
@@ -10,20 +10,20 @@ import org.springframework.stereotype.Service;
 
 import artie.sensor.common.dto.SensorObject;
 import artie.sensor.common.services.ArtieClientSensorImpl;
-import artie.sensor.screenwebcam.enums.ConfigurationEnum;
-import artie.sensor.screenwebcam.services.ScreenService;
+import artie.sensor.screen.enums.ConfigurationEnum;
+import artie.sensor.screen.services.ScreenService;
 
 @Service
-public class ScreenWebcamSensor extends ArtieClientSensorImpl{
+public class ScreenSensor extends ArtieClientSensorImpl{
 
 	//Configuration
-	@Value("${artie.sensor.screenwebcam.screen.fps}")
+	@Value("${artie.sensor.screen.fps}")
 	private String screenFps;
-	@Value("${artie.sensor.screenwebcam.screen.write-video-local}")
+	@Value("${artie.sensor.screen.write-video-local}")
 	private String screenWriteVideoLocal;
-	@Value("${artie.sensor.screenwebcam.screen.filename}")
+	@Value("${artie.sensor.screen.filename}")
 	private String screenFileName;
-	@Value("${artie.sensor.screenwebcam.screen.active}")
+	@Value("${artie.sensor.screen.active}")
 	private String screenActive;
 	
 	//Services

@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>artie.sensor</groupId>
-	<artifactId>screenwebcam</artifactId>
+	<artifactId>screen</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>screenwebcam</name>
 	<description>Screen and Webcam Sensor</description>
@@ -28,10 +28,15 @@
           <releases><enabled>true</enabled></releases>
           <snapshots><enabled>true</enabled></snapshots>
         </repository>
+        <repository>
+      		<id>artie-snapshots</id>
+      		<name>ARTIE repository</name>
+      		<url>http://nexus.ai-mind.com:8081/nexus/content/repositories/snapshots</url>
+    	</repository>
     	<repository>
-      		<id>github</id>
-      		<name>ARTIEROCKS Github repository</name>
-      		<url>https://maven.pkg.github.com/ARTIEROCKS</url>
+      		<id>artie-releases</id>
+      		<name>ARTIE repository</name>
+      		<url>http://nexus.ai-mind.com:8081/nexus/content/repositories/releases</url>
     	</repository>
     	<repository>
  			<id>screen-recorder</id>
