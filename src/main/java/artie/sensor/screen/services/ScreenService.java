@@ -20,9 +20,8 @@ import artie.sensor.screen.listeners.ScreenListener;
 @Service
 public class ScreenService {
 	
-	@Autowired
-	private ScreenSensor screenWebcamSensor;
 	private List<SensorObject> screenCaptures = new ArrayList<SensorObject>();
+	private boolean serviceStarted = false;
 	
 	//Properties
 	public List<SensorObject> getScreenCaptures() {
@@ -35,23 +34,21 @@ public class ScreenService {
 	/**
 	 * Function to start the screen recording
 	 */
-	public void start(){
+	public void start(int fps, String fileName, boolean writeVideoLocal){
 		
-		//Setting the video configuration
-		int fps = Integer.parseInt(this.screenWebcamSensor.getConfiguration().get(ConfigurationEnum.SCREEN_FPS.toString()));
-		String fileName = this.screenWebcamSensor.getConfiguration().get(ConfigurationEnum.SCREEN_FILE_NAME.toString());
-		boolean writeVideoLocal = Boolean.parseBoolean(this.screenWebcamSensor.getConfiguration().get(ConfigurationEnum.SCREEN_WRITE_VIDEO_LOCAL.toString()));
-		
-		VideoRecorderConfiguration.setCaptureInterval(fps);
-		
-		//If we want to write in the disk a local video
-		if(writeVideoLocal){
-			VideoRecorderConfiguration.setVideoDirectory(new File(fileName + ".mov"));
+		if(!serviceStarted){
+			VideoRecorderConfiguration.setCaptureInterval(fps);
+			
+			//If we want to write in the disk a local video
+			if(writeVideoLocal){
+				VideoRecorderConfiguration.setVideoDirectory(new File(fileName + ".mov"));
+			}
+			
+			//Adding the listener to write the screen captures in memory
+			VideoRecorder.addVideoRecorderEventListener(new ScreenListener(this.screenCaptures));
+			VideoRecorder.start(fileName + ".mov",writeVideoLocal);
+			this.serviceStarted = true;
 		}
-		
-		//Adding the listener to write the screen captures in memory
-		VideoRecorder.addVideoRecorderEventListener(new ScreenListener(this.screenCaptures));
-		VideoRecorder.start(fileName + ".mov",writeVideoLocal);
 	}
 	
 
@@ -65,6 +62,9 @@ public class ScreenService {
 			VideoRecorder.stop();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
+		}
+		finally{
+			this.serviceStarted = false;
 		}
 	}
 	

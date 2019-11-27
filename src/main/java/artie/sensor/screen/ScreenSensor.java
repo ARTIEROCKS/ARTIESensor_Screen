@@ -60,7 +60,10 @@ public class ScreenSensor extends ArtieClientSensorImpl{
 		
 		//If the screen capture is enabled
 		if(Boolean.parseBoolean(this.configuration.get(ConfigurationEnum.SCREEN_ACTIVE.toString()))){
-			this.screenService.start();
+			this.screenService.start(Integer.parseInt(this.configuration.get(ConfigurationEnum.SCREEN_FPS.toString())),
+									 this.configuration.get(ConfigurationEnum.SCREEN_FILE_NAME.toString()),
+									 Boolean.parseBoolean(this.configuration.get(ConfigurationEnum.SCREEN_WRITE_VIDEO_LOCAL.toString()))
+									 );
 			this.screenServiceIsActive = true;
 		}
 	}
