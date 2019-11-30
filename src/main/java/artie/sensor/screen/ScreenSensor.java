@@ -37,7 +37,7 @@ public class ScreenSensor extends ArtieClientSensorImpl{
 	 * About the sensor information
 	 */
 	public void sensorInformation(){
-		this.name = "Screen and Webcam Sensor";
+		this.name = "Screen Sensor";
 		this.version = "0.0.1";
 		this.author = "Luis-Eduardo Imbernón";
 	}
