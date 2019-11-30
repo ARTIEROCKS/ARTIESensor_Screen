@@ -12,6 +12,7 @@ public class CommandLineSensorRunner implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
+		System.setProperty("java.awt.headless", "false");
 		screenSensor.start();
 	}
 
