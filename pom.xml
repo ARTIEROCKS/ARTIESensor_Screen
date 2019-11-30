@@ -16,7 +16,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		<artie.sensor.common.version>0.0.2-SNAPSHOT</artie.sensor.common.version>
+		<artie.sensor.common.version>0.0.3-SNAPSHOT</artie.sensor.common.version>
 		<screen-capture.version>0.0.5-SNAPSHOT</screen-capture.version>
 	</properties>
 	
