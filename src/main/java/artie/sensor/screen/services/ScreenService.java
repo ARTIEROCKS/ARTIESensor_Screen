@@ -5,15 +5,12 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.agomezmoron.multimedia.recorder.VideoRecorder;
 import com.github.agomezmoron.multimedia.recorder.configuration.VideoRecorderConfiguration;
 
 import artie.sensor.common.dto.SensorObject;
-import artie.sensor.screen.ScreenSensor;
-import artie.sensor.screen.enums.ConfigurationEnum;
 import artie.sensor.screen.listeners.ScreenListener;
 
 

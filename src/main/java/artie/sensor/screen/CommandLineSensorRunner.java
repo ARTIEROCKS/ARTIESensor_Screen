@@ -8,10 +8,11 @@ import org.springframework.stereotype.Component;
 public class CommandLineSensorRunner implements CommandLineRunner {
 
 	@Autowired
-	ScreenSensor screenSensor;
+	private ScreenSensor screenSensor;
 	
 	@Override
 	public void run(String... args) throws Exception {
+		System.setProperty("java.awt.headless", "false");
 		screenSensor.start();
 	}
 
