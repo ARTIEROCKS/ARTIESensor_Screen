@@ -59,6 +59,7 @@ public class ScreenService extends ArtieClientSensorImpl{
 	@Override
 	public void start() {
 		
+		System.setProperty("java.awt.headless", "false");
 		boolean writeVideoLocal = Boolean.parseBoolean(this.configuration.get(ConfigurationEnum.SCREEN_WRITE_VIDEO_LOCAL.toString()));
 		int fps = Integer.parseInt(this.configuration.get(ConfigurationEnum.SCREEN_FPS.toString()));
 		String fileName = this.configuration.get(ConfigurationEnum.SCREEN_FILE_NAME.toString());
