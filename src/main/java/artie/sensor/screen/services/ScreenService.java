@@ -3,6 +3,7 @@ package artie.sensor.screen.services;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -109,7 +110,7 @@ public class ScreenService extends ArtieClientSensorImpl{
 		this.sensorData.clear();
 				
 		//Getting the information from the screen
-		this.screenCaptures.forEach(screen->this.sensorData.add(screen));
+		Collections.copy(this.sensorData, this.screenCaptures);
 		this.screenCaptures.clear();
 		
 		return this.sensorData;
