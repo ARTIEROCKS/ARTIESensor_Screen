@@ -50,9 +50,15 @@ public class ScreenController implements ArtieClientSensor {
 		return this.screenService.getVersion();
 	}
 
-	@PostMapping(path = "/artie/sensor/screen/configuration", consumes = "application/json")
-	public void setConfiguration(@RequestBody Map<String, String> configuration) {
-		this.setConfiguration(configuration);
+	@PostMapping(path = "/artie/sensor/screen/configuration")
+	@ResponseBody
+	public void setConfiguration(@RequestBody String configuration){
+		this.screenService.setConfiguration(configuration);
+	}
+	
+	@Override
+	public void setConfiguration(Map<String, String> configuration) {
+		this.screenService.setConfiguration(configuration);	
 	}
 
 	@GetMapping("/artie/sensor/screen/start")
@@ -65,6 +71,13 @@ public class ScreenController implements ArtieClientSensor {
 	@ResponseBody
 	public void stop() {
 		this.screenService.stop();		
+	}
+
+	@GetMapping("/artie/sensor/screen/sendSensorData")
+	@ResponseBody
+	public void sendSensorData() {
+		this.screenService.getSensorData();
+		this.screenService.sendSensorData();		
 	}
 
 }

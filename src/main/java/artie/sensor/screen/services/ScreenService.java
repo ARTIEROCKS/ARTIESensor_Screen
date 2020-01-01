@@ -3,7 +3,6 @@ package artie.sensor.screen.services;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -36,13 +35,22 @@ public class ScreenService extends ArtieClientSensorImpl{
 	@Value("${artie.sensor.screen.active}")
 	private String screenActive;
 	
+	@Value("${artie.sensor.keyboardmouse.name}")
+	private String paramName;
+	
+	@Value("${artie.sensor.keyboardmouse.version}")
+	private String paramVersion;
+	
+	@Value("${artie.sensor.keyboardmouse.author}")
+	private String paramAuthor;
+	
 	/**
 	 * About the sensor information
 	 */
 	public void sensorInformation(){
-		this.name = "Screen Sensor";
-		this.version = "0.1.0";
-		this.author = "Luis-Eduardo Imbernón";
+		this.name = this.paramName;
+		this.version = this.paramVersion;
+		this.author = this.paramVersion;
 	}
 	
 	@PostConstruct
@@ -110,7 +118,10 @@ public class ScreenService extends ArtieClientSensorImpl{
 		this.sensorData.clear();
 				
 		//Getting the information from the screen
-		Collections.copy(this.sensorData, this.screenCaptures);
+		int elements = this.screenCaptures.size();
+		for(int i=0; i<elements; i++) {
+			this.sensorData.add(this.screenCaptures.get(i));
+		}
 		this.screenCaptures.clear();
 		
 		return this.sensorData;
