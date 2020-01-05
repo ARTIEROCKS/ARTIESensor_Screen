@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,7 @@ public class ScreenService extends ArtieClientSensorImpl{
 	//Attributes
 	private List<SensorObject> screenCaptures = new ArrayList<SensorObject>();
 	private boolean serviceStarted = false;
+	private Logger logger = LoggerFactory.getLogger(ScreenService.class);
 	
 	//Configuration
 	@Value("${artie.sensor.screen.fps}")
@@ -63,6 +66,8 @@ public class ScreenService extends ArtieClientSensorImpl{
 		this.configuration.putIfAbsent(ConfigurationEnum.SCREEN_FILE_NAME.toString(),this.screenFileName);
 		this.configuration.putIfAbsent(ConfigurationEnum.SCREEN_ACTIVE.toString(),this.screenActive);
 		
+		this.isAlive = true;
+		
 	}
 	
 	@Override
@@ -100,7 +105,7 @@ public class ScreenService extends ArtieClientSensorImpl{
 		try {
 			VideoRecorder.stop();
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			this.logger.error(e.getMessage());
 		}
 		finally{
 			this.serviceStarted = false;

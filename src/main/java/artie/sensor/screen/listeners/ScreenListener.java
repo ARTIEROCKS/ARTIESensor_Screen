@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.github.agomezmoron.multimedia.recorder.listener.VideoRecorderEventListener;
@@ -17,6 +19,8 @@ import artie.sensor.common.enums.SensorObjectTypeEnum;
 public class ScreenListener implements VideoRecorderEventListener {
 
 	private List<SensorObject> screenCaptures;
+	private Logger logger = LoggerFactory.getLogger(ScreenListener.class);
+	
 	
 	@Override
 	public void frameAdded(VideoRecorderEventObject args) {
@@ -29,8 +33,7 @@ public class ScreenListener implements VideoRecorderEventListener {
 			try {
 				strBis = bis.imageSerialization();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				this.logger.error(e.getMessage());
 			}
 			
 			SensorObject so = new SensorObject(new Date(), strBis, SensorObjectTypeEnum.IMAGE, "screen");
