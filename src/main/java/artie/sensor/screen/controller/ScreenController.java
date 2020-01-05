@@ -20,6 +20,12 @@ public class ScreenController implements ArtieClientSensor {
 	@Autowired
 	private ScreenService screenService;
 
+	@GetMapping("/artie/sensor/screen/getVersion")
+	@ResponseBody
+	public String getVersion() {
+		return this.screenService.getVersion();
+	}
+	
 	@GetMapping("/artie/sensor/screen/getAuthor")
 	@ResponseBody
 	public String getAuthor() {
@@ -30,6 +36,12 @@ public class ScreenController implements ArtieClientSensor {
 	@ResponseBody
 	public String getName() {
 		return this.screenService.getName();
+	}
+	
+	@GetMapping("/artie/sensor/screen/isAlive")
+	@ResponseBody
+	public boolean getIsAlive() {
+		return this.screenService.getIsAlive();
 	}
 
 	@GetMapping("/artie/sensor/screen/getConfiguration")
@@ -42,12 +54,6 @@ public class ScreenController implements ArtieClientSensor {
 	@ResponseBody
 	public List<SensorObject> getSensorData() {
 		return this.screenService.getSensorData();
-	}
-
-	@GetMapping("/artie/sensor/screen/getVersion")
-	@ResponseBody
-	public String getVersion() {
-		return this.screenService.getVersion();
 	}
 
 	@PostMapping(path = "/artie/sensor/screen/configuration")
