@@ -47,6 +47,9 @@ public class ScreenService extends ArtieClientSensorImpl{
 	@Value("${artie.sensor.keyboardmouse.author}")
 	private String paramAuthor;
 	
+	@Value("${artie.sensor.screen.datalimit}")
+	private long screenDataLimit;
+	
 	/**
 	 * About the sensor information
 	 */
@@ -87,13 +90,12 @@ public class ScreenService extends ArtieClientSensorImpl{
 			//If we want to write in the disk a local video
 			if(writeVideoLocal){
 				VideoRecorderConfiguration.setVideoDirectory(new File(fileName + ".mov"));
-				
-				//Adding the listener to write the screen captures in memory
-				VideoRecorder.addVideoRecorderEventListener(new ScreenListener(this.screenCaptures));
-				VideoRecorder.start(fileName + ".mov",writeVideoLocal);
-				this.serviceStarted = true;
 			}
 			
+			//Adding the listener to write the screen captures in memory
+			VideoRecorder.addVideoRecorderEventListener(new ScreenListener(this.screenCaptures, this.screenDataLimit));
+			VideoRecorder.start(fileName + ".mov",writeVideoLocal);
+			this.serviceStarted = true;
 		}
 	}
 
@@ -125,7 +127,7 @@ public class ScreenService extends ArtieClientSensorImpl{
 		//Getting the information from the screen
 		int elements = this.screenCaptures.size();
 		for(int i=0; i<elements; i++) {
-			this.sensorData.add(this.screenCaptures.get(i));
+			this.addSensorObject(this.screenCaptures.get(i));
 		}
 		this.screenCaptures.clear();
 		

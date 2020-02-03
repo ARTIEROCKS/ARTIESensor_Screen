@@ -20,6 +20,7 @@ public class ScreenListener implements VideoRecorderEventListener {
 
 	private List<SensorObject> screenCaptures;
 	private Logger logger = LoggerFactory.getLogger(ScreenListener.class);
+	private long screenDataLimit;
 	
 	
 	@Override
@@ -37,6 +38,10 @@ public class ScreenListener implements VideoRecorderEventListener {
 			}
 			
 			SensorObject so = new SensorObject(new Date(), strBis, SensorObjectTypeEnum.IMAGE, "screen");
+			
+			if(this.screenCaptures.size() >= this.screenDataLimit) {
+				this.screenCaptures.remove(0);
+			}
 			this.screenCaptures.add(so);
 		}
 	}
@@ -45,8 +50,9 @@ public class ScreenListener implements VideoRecorderEventListener {
 	 * Parameterized constructor
 	 * @param screenCaptures
 	 */
-	public ScreenListener(List<SensorObject> screenCaptures){
+	public ScreenListener(List<SensorObject> screenCaptures, long screenDataLimit){
 		this.screenCaptures = screenCaptures;
+		this.screenDataLimit = screenDataLimit;
 	}
 
 }
